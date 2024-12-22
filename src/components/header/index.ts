@@ -1,1 +1,5 @@
 export * from './header'
+export * from './header-center'
+export * from './header-center-modal'
+export * from './player-1'
+export * from './player-2'
