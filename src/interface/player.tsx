@@ -1,6 +1,11 @@
 export interface playerInterface {
   name: string;
-  icon: string; //cambiar ract node o un icono
+  icon: number;
   autoplayer: boolean; 
   color: string;
+}
+
+export interface iconsInterface {
+  id: number
+  component: React.ReactNode;
 }

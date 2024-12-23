@@ -29,7 +29,7 @@ export default function HeaderCenter({ player1, player2, setPlayer1, setPlayer2 
   return (
     <div>
       <button onClick={openModal}>
-        <IoMdOptions size={28} className="mx-1" />
+        <IoMdOptions size={28} className="mx-1" style={{color: '#3B82F6'}} />
       </button>
       <HeaderCenterModal isOpen={isModalOpen} onClose={closeModal}>
         <div className="flex mb-4 items-center">
@@ -51,9 +51,8 @@ export default function HeaderCenter({ player1, player2, setPlayer1, setPlayer2 
             onClick={handleSave}>
             Save
           </button>
-          <button className="bg-blue-500 text-white hover:bg-blue-600 px-2 py-1 rounded-md" onClick={closeModal}>Close</button>
+          <button className="bg-blue-500 text-white hover:bg-blue-600 px-2 py-1 rounded-md mb-5" onClick={closeModal}>Close</button>
         </div>
-        <button></button>
       </HeaderCenterModal>
     </div>
   )
