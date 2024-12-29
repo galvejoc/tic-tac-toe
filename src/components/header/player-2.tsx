@@ -2,15 +2,15 @@ import { iconsReturn } from "@/function";
 import { playerInterface } from "@/interface";
 import { FaPencilAlt, FaRobot } from "react-icons/fa";
 
-export function Player2({ name, icon, autoplayer, color }: playerInterface) {
+export function Player2({ name, icon, autoplayer, color, playPlayer }: playerInterface) {
   return (
-    <div className="block">
+    <div className="block rounded-xl px-3" style={{boxShadow: playPlayer === 2 ? 'inset -0px -12px 12px rgba(125, 166, 232, 0.5)' : 'none',}}>
       <div className="flex justify-center items-center">
         <span className="mr-3 text-2xl" style={{ color: color }}>{iconsReturn(icon)}</span>
         <span className="text-2xl" style={{ color: color }}>{name}</span>
       </div>
       <div >
-        <span className="flex justify-start" >
+        <span className="flex justify-start mb-2" >
           {autoplayer ? (
             <FaRobot style={{color: color}} className="mx-auto"/>
           ) : (

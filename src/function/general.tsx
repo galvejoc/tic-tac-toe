@@ -45,5 +45,15 @@ export function isWinner(data: valueTableType[]) {
     }
   }
   return 0
+}
 
+export function isFull(data: valueTableType[]) {
+  if (data.some(element => element === 0)) {
+    console.log(false);
+    
+    return false;
+  }
+  console.log(true);
+  
+  return true;
 }

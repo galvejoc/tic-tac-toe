@@ -63,7 +63,6 @@ export function HeaderForm({ tempPlayer, setTempPlayer }: HeaderFormInterface) {
           </span>
         </button>
       </div>
-
     </div>
   )
 }
