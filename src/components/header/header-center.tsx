@@ -1,18 +1,11 @@
 'use client'
-import { playerInterface } from "@/interface"
+import { headerInterface, playerInterface } from "@/interface"
 import { useState } from "react"
 import { IoMdOptions } from "react-icons/io"
 import { HeaderCenterModal } from "./header-center-modal"
 import { HeaderForm } from "./header-form"
 
-interface HeaderCenterInterface {
-  player1: playerInterface
-  player2: playerInterface
-  setPlayer1: (player: playerInterface) => void
-  setPlayer2: (player: playerInterface) => void
-}
-
-export default function HeaderCenter({ player1, player2, setPlayer1, setPlayer2 }: HeaderCenterInterface) {
+export default function HeaderCenter({ player1, player2, setPlayer1, setPlayer2 }: headerInterface) {
   const [isModalOpen, setModalOpen] = useState<boolean>(false)
   const openModal = () => setModalOpen(true);
   const closeModal = () => setModalOpen(false);

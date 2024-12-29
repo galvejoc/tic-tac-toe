@@ -1,1 +1,2 @@
-export * from './player'
+export * from './header'
+export * from './body'
