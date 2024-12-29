@@ -1,10 +1,10 @@
 'use client'
 import { empyTable } from '@/constants';
 import { bodyInterface, generalTableInterface, tableInterface } from '@/interface';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { TableSingle } from './table';
 import { iconsReturn } from '@/function';
-export function Body({ player1, player2, playPlayer, setPlayPlayer }: bodyInterface) {
+export function Body({ player1, player2, playPlayer, setPlayPlayer, clean }: bodyInterface) {
   const [table0, setTable0] = useState<tableInterface>({ data: empyTable, status: 0 })
   const [table1, setTable1] = useState<tableInterface>({ data: empyTable, status: 0 })
   const [table2, setTable2] = useState<tableInterface>({ data: empyTable, status: 0 })
@@ -23,8 +23,27 @@ export function Body({ player1, player2, playPlayer, setPlayPlayer }: bodyInterf
   const iconSinglePlayer1 = iconsReturn(player1.icon)
   const iconSinglePlayer2 = iconsReturn(player2.icon)
 
+  const cleanTable = () => {
+    setTable0({ data: empyTable, status: 0 })
+    setTable1({ data: empyTable, status: 0 })
+    setTable2({ data: empyTable, status: 0 })
+    setTable3({ data: empyTable, status: 0 })
+    setTable4({ data: empyTable, status: 0 })
+    setTable5({ data: empyTable, status: 0 })
+    setTable6({ data: empyTable, status: 0 })
+    setTable7({ data: empyTable, status: 0 })
+    setTable8({ data: empyTable, status: 0 })
+    setPlayPlayer(1)
+  }
+
+  useEffect(() => {
+    cleanTable()
+  },
+    [clean]
+  )
+
   return (
-    <div className='p-4 flex flex-col items-center'>
+    <div className='p-4 flex flex-col items-center relative'>
       <div className='flex justify-center'>
         <div className='border-gray-600 border-b-2 border-r-2'>
           <TableSingle table={table0} setTable={setTable0} iconSinglePlayer1={iconSinglePlayer1} iconSinglePlayer2={iconSinglePlayer2} playPlayer={playPlayer} setPlayPlayer={setPlayPlayer} color1={player1.color} color2={player2.color} />

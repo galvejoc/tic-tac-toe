@@ -4,12 +4,12 @@ import { Player1 } from "./player-1"
 import { Player2 } from "./player-2"
 import { FaQuestion, FaRedo } from "react-icons/fa"
 
-export function Header({ player1, player2, setPlayer1, setPlayer2, playPlayer }: headerInterface) {
+export function Header({ player1, player2, setPlayer1, setPlayer2, playPlayer, cleanTable }: headerInterface) {
   return (
     <div className="my-5">
       <div className="grid grid-cols-[1fr_0.1fr_1fr] gap-6">
         <div className=" flex justify-between items-center">
-          <button><FaRedo size={20} style={{color: '#3B82F6'}}/></button>
+          <button onClick={cleanTable}><FaRedo size={20} style={{color: '#3B82F6'}}/></button>
           <Player1 {...player1} playPlayer={playPlayer} />
         </div>
         <div className="flex justify-center items-center">

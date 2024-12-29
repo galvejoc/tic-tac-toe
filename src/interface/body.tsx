@@ -5,6 +5,7 @@ export interface bodyInterface {
   player2: playerInterface
   playPlayer: valueTableType
   setPlayPlayer: (value: valueTableType) => void
+  clean: boolean
 }
 
 export interface tableInterface {

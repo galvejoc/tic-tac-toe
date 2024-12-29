@@ -49,11 +49,7 @@ export function isWinner(data: valueTableType[]) {
 
 export function isFull(data: valueTableType[]) {
   if (data.some(element => element === 0)) {
-    console.log(false);
-    
     return false;
   }
-  console.log(true);
-  
   return true;
 }

@@ -19,4 +19,5 @@ export interface headerInterface {
   setPlayer1: (player: playerInterface) => void
   setPlayer2: (player: playerInterface) => void
   playPlayer?: valueTableType
+  cleanTable? : ()=> void
 }
