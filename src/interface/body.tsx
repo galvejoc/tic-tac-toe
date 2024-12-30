@@ -6,6 +6,7 @@ export interface bodyInterface {
   playPlayer: valueTableType
   setPlayPlayer: (value: valueTableType) => void
   clean: boolean
+  setClean: () => void
 }
 
 export interface tableInterface {
@@ -21,4 +22,4 @@ export interface generalTableInterface {
 export type valueTableType = 0 | 1 | 2
 
 //estado de una tabla, vacia| player1| player2| sin Ganador
-export type statusTableType= 0 | 1 | 2 | 3
+export type statusTableType = 0 | 1 | 2 | 3

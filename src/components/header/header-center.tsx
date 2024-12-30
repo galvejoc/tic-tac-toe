@@ -49,16 +49,20 @@ export default function HeaderCenter({ player1, player2, setPlayer1, setPlayer2 
         </div>
         <div className="my-5">
           <button
-            className="bg-blue-500 text-white hover:bg-blue-600 px-2 py-1 mr-3 rounded-md"
+            className="border-2 border-blue-500 text-blue-600 hover:bg-blue-100 px-4 py-1 mr-3 rounded-md"
+            style={{ boxShadow: 'inset -1px -4px 12px rgba(125, 166, 232, 0.5)' }}
             onClick={handleSave}>
             Save
           </button>
-          <button className="bg-blue-500 text-white hover:bg-blue-600 px-2 mr-3 py-1 rounded-md "
+          <button
+            className="border-2 border-blue-500 text-blue-600 hover:bg-blue-100 px-4 mr-3 py-1 rounded-md "
+            style={{ boxShadow: 'inset -1px -4px 12px rgba(125, 166, 232, 0.5)' }}
             onClick={closeModal}>
             Close
           </button>
           <button
-            className="bg-blue-500 text-white hover:bg-blue-600 px-2 py-1 rounded-md"
+            className="border-2 border-blue-500 text-blue-600 hover:bg-blue-100 px-4 py-1 rounded-md"
+            style={{ boxShadow: 'inset -1px -4px 12px rgba(125, 166, 232, 0.5)' }}
             onClick={setDefault}>
             Default
           </button>

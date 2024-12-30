@@ -1,47 +1,11 @@
-import { valueTableType } from "@/interface";
+import { statusTableType, valueTableType } from "@/interface";
 
 export function isWinner(data: valueTableType[]) {
-  //horizontal
-  if (data[0] === data[1] && data[1] === data[2]) {
-    if (data[0] !== 0) {
-      return data[0]
-    }
-  }
-  if (data[3] === data[4] && data[4] === data[5]) {
-    if (data[3] !== 0) {
-      return data[3]
-    }
-  }
-  if (data[6] === data[7] && data[7] === data[8]) {
-    if (data[6] !== 0) {
-      return data[6]
-    }
-  }
-  //vertical
-  if (data[0] === data[3] && data[3] === data[6]) {
-    if (data[0] !== 0) {
-      return data[0]
-    }
-  }
-  if (data[1] === data[4] && data[4] === data[7]) {
-    if (data[1] !== 0) {
-      return data[1]
-    }
-  }
-  if (data[2] === data[5] && data[5] === data[8]) {
-    if (data[2] !== 0) {
-      return data[2]
-    }
-  }
-  //diagonal
-  if (data[0] === data[4] && data[4] === data[8]) {
-    if (data[0] !== 0) {
-      return data[0]
-    }
-  }
-  if (data[6] === data[4] && data[4] === data[2]) {
-    if (data[6] !== 0) {
-      return data[6]
+  // Verificar combinaciones ganadoras
+  for (const combination of winningCombinations) {
+    const [a, b, c] = combination;
+    if (data[a] === data[b] && data[b] === data[c] && data[a] !== 0) {
+      return data[a]; // Devuelve el ganador
     }
   }
   return 0
@@ -53,3 +17,40 @@ export function isFull(data: valueTableType[]) {
   }
   return true;
 }
+
+export function isWinnerGereral(data: statusTableType[]) {
+  // Verificar combinaciones ganadoras
+  for (const combination of winningCombinations) {
+    const [a, b, c] = combination;
+    if (data[a] === data[b] && data[b] === data[c] && data[a] !== 0 && data[a] !==3 ) {
+      return data[a]; // Devuelve el ganador
+    }
+  }
+
+  // Verificar si hay empate
+  const isEmpty = data.some(element => element === 0);
+  console.log('isEmpty');
+  console.log(isEmpty);
+
+  if (!isEmpty) {
+    const count1 = data.filter(element => element === 1).length;
+    const count2 = data.filter(element => element === 2).length;
+    if (count1 === count2) {
+      return 3; // Empate
+    }
+    return count1 > count2 ? 1 : 2; // Devuelve el jugador con más marcas
+  }
+
+  return 0; // No hay ganador ni empate
+}
+
+const winningCombinations = [
+  [0, 1, 2], // Horizontal
+  [3, 4, 5], // Horizontal
+  [6, 7, 8], // Horizontal
+  [0, 3, 6], // Vertical
+  [1, 4, 7], // Vertical
+  [2, 5, 8], // Vertical
+  [0, 4, 8], // Diagonal
+  [2, 4, 6]  // Diagonal
+];

@@ -13,9 +13,11 @@ export interface TableSingleInterface {
   setPlayPlayer: (palyPlayer: valueTableType) => void
   color1: string
   color2: string
+  setPositionLastAction: (number: number) => void
+  isActive: boolean
 }
 
-export function TableSingle({ table, setTable, iconSinglePlayer1, iconSinglePlayer2, playPlayer, setPlayPlayer, color1, color2 }: TableSingleInterface) {
+export function TableSingle({ table, setTable, iconSinglePlayer1, iconSinglePlayer2, playPlayer, setPlayPlayer, color1, color2, setPositionLastAction, isActive }: TableSingleInterface) {
   const spanNull =
     <span className="opacity-0 text-2xl">
       {iconSinglePlayer1}
@@ -33,6 +35,9 @@ export function TableSingle({ table, setTable, iconSinglePlayer1, iconSinglePlay
 
   const clickTable = (position: number) => {
     try {
+      if (isActive) {
+        return; // No se permite hacer clic en esta tabla
+      }
       //valida si esta activa al no tener un ganador
       if (table.status !== 0) {
         return
@@ -45,6 +50,8 @@ export function TableSingle({ table, setTable, iconSinglePlayer1, iconSinglePlay
       const newData = [...table.data]
       newData[position] = playPlayer;
       setTable({ ...table, data: newData })
+      //guarda la posicion de la ultima jugada
+      setPositionLastAction(position)
       //cambia el jugador actual
       setPlayPlayer(playPlayer === 1 ? 2 : 1);
     } catch (error) {
@@ -66,7 +73,7 @@ export function TableSingle({ table, setTable, iconSinglePlayer1, iconSinglePlay
   )
 
   return (
-    <div className={clsx("p-4 block relative")}>
+    <div className={clsx("p-4 block relative", {"pointer-events-none":isActive})}>
       {table.status === 1 && (
         <span style={{ color: color1 }} className=" absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-8xl" >
           {iconSinglePlayer1}

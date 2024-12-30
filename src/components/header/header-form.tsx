@@ -26,9 +26,11 @@ export function HeaderForm({ tempPlayer, setTempPlayer }: HeaderFormInterface) {
         type="text"
         defaultValue={tempPlayer.name}
         onChange={(e) => setTempPlayer({ ...tempPlayer, name: e.target.value })}
-        className="border border-gray-300 rounded-lg p-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        className="border-2 text-blue-600 border-blue-400 rounded-lg p-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" 
+        style={{ boxShadow: 'inset -1px -4px 12px rgba(125, 166, 232, 0.5)' }}
+        />
       <div className="flex items-center justify-between my-5 cursor-pointer" onClick={openIconsModal}>
-        <span className="mr-2">Icon</span>
+        <span className="mr-2 text-blue-600">Icon</span>
         <span className="text-2xl" style={{ color: tempPlayer.color }}>{iconsReturn(tempPlayer.icon)}</span>
         <IconsModal
           tempPlayer={tempPlayer}
@@ -44,7 +46,7 @@ export function HeaderForm({ tempPlayer, setTempPlayer }: HeaderFormInterface) {
         name="color"
         type="color"
       />
-      <div className="flex items-center justify-between cursor-pointer my-5" onClick={toggleSwitch}>
+      <div className="flex items-center justify-between cursor-pointer my-5 text-blue-600" onClick={toggleSwitch}>
         <span className="mr-2">{tempPlayer.autoplayer ? 'Auto' : 'Manual'}</span>
         <button
           onClick={toggleSwitch}
