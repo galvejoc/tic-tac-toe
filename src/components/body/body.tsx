@@ -3,7 +3,7 @@ import { empyTable } from '@/constants';
 import { bodyInterface, playerInterface, tableInterface } from '@/interface';
 import { useEffect, useState } from 'react';
 import { TableSingle } from './table';
-import { iconsReturn, isWinnerGereral } from '@/function';
+import { getRandomZeroPosition, iconsReturn, isWinnerGereral } from '@/function';
 import { BodyModalWinner } from './body-modal-winner';
 export function Body({ player1, player2, playPlayer, setPlayPlayer, clean, setClean }: bodyInterface) {
   const [table0, setTable0] = useState<tableInterface>({ data: empyTable, status: 0 })
@@ -23,18 +23,20 @@ export function Body({ player1, player2, playPlayer, setPlayPlayer, clean, setCl
   const iconSinglePlayer2 = iconsReturn(player2.icon)
 
   const [isOpen, setIsOpen] = useState<boolean>(false)
-  const [playerWinner, setPlayerWinner] = useState<playerInterface| undefined>(undefined)
-  
+  const [playerWinner, setPlayerWinner] = useState<playerInterface | undefined>(undefined)
+
+  const [positionNumberRandom, setPositionNumberRandom] = useState<number>(-1)
+
   const isActive = (positionNewAction: number, position: number) => {
-      if (positionNewAction ===-1) {
-        return false
-      }
-      if (positionNewAction === position) {
-        return false
-      }
-      else {
-        return true
-      }
+    if (positionNewAction === -1) {
+      return false
+    }
+    if (positionNewAction === position) {
+      return false
+    }
+    else {
+      return true
+    }
   }
 
   useEffect(() => {
@@ -51,6 +53,7 @@ export function Body({ player1, player2, playPlayer, setPlayPlayer, clean, setCl
     setPositionLastAction(-1)
     setPositionNewAction(-1)
     setPlayerWinner(undefined)
+    setPositionNumberRandom(-1)
   },
     [clean]
   )
@@ -58,31 +61,49 @@ export function Body({ player1, player2, playPlayer, setPlayPlayer, clean, setCl
   useEffect(() => {
     if (positionLastAction === -1) {
       setPositionNewAction(-1);
-      return;
+      // return;
     }
-    const tables = [table0, table1, table2, table3, table4, table5, table6, table7, table8];
-    const tablesa = [table0.status, table1.status, table2.status, table3.status, table4.status, table5.status, table6.status, table7.status, table8.status];
+    const tables = [table0.status, table1.status, table2.status, table3.status, table4.status, table5.status, table6.status, table7.status, table8.status];
     //condicion de victoria
-    const data = isWinnerGereral(tablesa)
+    const data = isWinnerGereral(tables)
     if (data !== 0) {
-      if (data===1) {
-        setPlayerWinner(player1)  
+      if (data === 1) {
+        setPlayerWinner(player1)
+        setIsOpen(true);
+        return
       }
-      if (data===2) {
-        setPlayerWinner(player2)  
+      else if (data === 2) {
+        setPlayerWinner(player2)
+        setIsOpen(true);
+        return
+      } else {
+        setIsOpen(true);
+        return
       }
-      setIsOpen(true);
-      return
     }
 
-    if (tables[positionLastAction].status === 0) {
+    if (tables[positionLastAction] === 0) {
       setPositionNewAction(positionLastAction);
     }
     else {
+      setPositionLastAction(-1)
       setPositionNewAction(-1)
+      setPositionNumberRandom(getRandomZeroPosition(tables))
     }
-
   }, [positionLastAction, table0, table1, table2, table3, table4, table5, table6, table7, table8]);
+
+  const positionRandom = (position: number) => {
+    if (playerWinner !== undefined) {
+      return false
+    }
+    if (positionNumberRandom === position) {
+      return true
+    }
+    else if (positionLastAction === position) {
+      return true
+    }
+    return false
+  }
 
   return (
     <div className='p-4 flex flex-col items-center relative'>
@@ -99,8 +120,12 @@ export function Body({ player1, player2, playPlayer, setPlayPlayer, clean, setCl
             setPlayPlayer={setPlayPlayer}
             color1={player1.color}
             color2={player2.color}
+            playerAuto1={player1.autoplayer}
+            playerAuto2={player2.autoplayer}
             setPositionLastAction={setPositionLastAction}
-            isActive={isActive(positionNewAction, 0)} />
+            isActive={isActive(positionNewAction, 0)}
+            activeRandom={positionRandom(0)}
+          />
         </div>
         <div
           className='border-gray-600 border-x-2 border-b-2'
@@ -114,8 +139,12 @@ export function Body({ player1, player2, playPlayer, setPlayPlayer, clean, setCl
             setPlayPlayer={setPlayPlayer}
             color1={player1.color}
             color2={player2.color}
-            setPositionLastAction={setPositionLastAction} 
-            isActive={isActive(positionNewAction, 1)} />
+            playerAuto1={player1.autoplayer}
+            playerAuto2={player2.autoplayer}
+            setPositionLastAction={setPositionLastAction}
+            isActive={isActive(positionNewAction, 1)}
+            activeRandom={positionRandom(1)}
+          />
         </div>
         <div
           className='border-gray-600  border-b-2 border-l-2 rounded-tr-2xl'
@@ -129,8 +158,12 @@ export function Body({ player1, player2, playPlayer, setPlayPlayer, clean, setCl
             setPlayPlayer={setPlayPlayer}
             color1={player1.color}
             color2={player2.color}
-            setPositionLastAction={setPositionLastAction} 
-            isActive={isActive(positionNewAction, 2)} />
+            playerAuto1={player1.autoplayer}
+            playerAuto2={player2.autoplayer}
+            setPositionLastAction={setPositionLastAction}
+            isActive={isActive(positionNewAction, 2)}
+            activeRandom={positionRandom(2)}
+          />
         </div>
       </div>
       <div className='flex'>
@@ -145,8 +178,12 @@ export function Body({ player1, player2, playPlayer, setPlayPlayer, clean, setCl
             setPlayPlayer={setPlayPlayer}
             color1={player1.color}
             color2={player2.color}
+            playerAuto1={player1.autoplayer}
+            playerAuto2={player2.autoplayer}
             setPositionLastAction={setPositionLastAction}
-            isActive={isActive(positionNewAction, 3)} />
+            isActive={isActive(positionNewAction, 3)}
+            activeRandom={positionRandom(3)}
+          />
         </div>
         <div className='border-gray-600 border-2'
           style={{ boxShadow: positionNewAction === 4 ? 'inset 0px 0px 16px rgba(125, 166, 232, 1)' : "" }}>
@@ -159,8 +196,12 @@ export function Body({ player1, player2, playPlayer, setPlayPlayer, clean, setCl
             setPlayPlayer={setPlayPlayer}
             color1={player1.color}
             color2={player2.color}
+            playerAuto1={player1.autoplayer}
+            playerAuto2={player2.autoplayer}
             setPositionLastAction={setPositionLastAction}
-            isActive={isActive(positionNewAction, 4)} />
+            isActive={isActive(positionNewAction, 4)}
+            activeRandom={positionRandom(4)}
+          />
         </div>
         <div className='border-gray-600 border-l-2 border-y-2'
           style={{ boxShadow: positionNewAction === 5 ? 'inset 4px 0px 16px rgba(125, 166, 232, 1)' : "" }}>
@@ -173,8 +214,12 @@ export function Body({ player1, player2, playPlayer, setPlayPlayer, clean, setCl
             setPlayPlayer={setPlayPlayer}
             color1={player1.color}
             color2={player2.color}
+            playerAuto1={player1.autoplayer}
+            playerAuto2={player2.autoplayer}
             setPositionLastAction={setPositionLastAction}
-            isActive={isActive(positionNewAction, 5)} />
+            isActive={isActive(positionNewAction, 5)}
+            activeRandom={positionRandom(5)}
+          />
         </div>
       </div>
       <div className='flex'>
@@ -189,8 +234,12 @@ export function Body({ player1, player2, playPlayer, setPlayPlayer, clean, setCl
             setPlayPlayer={setPlayPlayer}
             color1={player1.color}
             color2={player2.color}
+            playerAuto1={player1.autoplayer}
+            playerAuto2={player2.autoplayer}
             setPositionLastAction={setPositionLastAction}
-            isActive={isActive(positionNewAction, 6)} />
+            isActive={isActive(positionNewAction, 6)}
+            activeRandom={positionRandom(6)}
+          />
         </div>
         <div className='border-gray-600 border-t-2 border-x-2'
           style={{ boxShadow: positionNewAction === 7 ? 'inset 0px 4px 16px rgba(125, 166, 232, 1)' : "" }}>
@@ -203,8 +252,12 @@ export function Body({ player1, player2, playPlayer, setPlayPlayer, clean, setCl
             setPlayPlayer={setPlayPlayer}
             color1={player1.color}
             color2={player2.color}
+            playerAuto1={player1.autoplayer}
+            playerAuto2={player2.autoplayer}
             setPositionLastAction={setPositionLastAction}
-            isActive={isActive(positionNewAction, 7)} />
+            isActive={isActive(positionNewAction, 7)}
+            activeRandom={positionRandom(7)}
+          />
         </div>
         <div className='border-gray-600 border-t-2 border-l-2 rounded-ee-2xl'
           style={{ boxShadow: positionNewAction === 8 ? 'inset 4px 4px 16px rgba(125, 166, 232, 1)' : "" }}>
@@ -217,11 +270,14 @@ export function Body({ player1, player2, playPlayer, setPlayPlayer, clean, setCl
             setPlayPlayer={setPlayPlayer}
             color1={player1.color}
             color2={player2.color}
-            setPositionLastAction={setPositionLastAction} 
-            isActive={isActive(positionNewAction, 8)} />
+            playerAuto1={player1.autoplayer}
+            playerAuto2={player2.autoplayer}
+            setPositionLastAction={setPositionLastAction}
+            isActive={isActive(positionNewAction, 8)}
+            activeRandom={positionRandom(8)} />
         </div>
       </div>
-      <BodyModalWinner isOpen={isOpen} setClean={setClean} setIsOpen ={setIsOpen} playerWinner={playerWinner}/>
+      <BodyModalWinner isOpen={isOpen} setClean={setClean} setIsOpen={setIsOpen} playerWinner={playerWinner} />
     </div>
   )
 }

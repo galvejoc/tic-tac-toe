@@ -22,16 +22,13 @@ export function isWinnerGereral(data: statusTableType[]) {
   // Verificar combinaciones ganadoras
   for (const combination of winningCombinations) {
     const [a, b, c] = combination;
-    if (data[a] === data[b] && data[b] === data[c] && data[a] !== 0 && data[a] !==3 ) {
+    if (data[a] === data[b] && data[b] === data[c] && data[a] !== 0 && data[a] !== 3) {
       return data[a]; // Devuelve el ganador
     }
   }
 
   // Verificar si hay empate
   const isEmpty = data.some(element => element === 0);
-  console.log('isEmpty');
-  console.log(isEmpty);
-
   if (!isEmpty) {
     const count1 = data.filter(element => element === 1).length;
     const count2 = data.filter(element => element === 2).length;
@@ -54,3 +51,12 @@ const winningCombinations = [
   [0, 4, 8], // Diagonal
   [2, 4, 6]  // Diagonal
 ];
+
+export function getRandomZeroPosition(data: valueTableType[] | statusTableType[]) {
+  const zeroPositions = data
+    .map((value, index) => (value === 0 ? index : -1))
+    .filter(index => index != -1);
+
+  const randomIndex = Math.floor(Math.random() * zeroPositions.length);
+  return zeroPositions[randomIndex];
+}
