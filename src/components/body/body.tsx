@@ -106,7 +106,7 @@ export function Body({ player1, player2, playPlayer, setPlayPlayer, clean, setCl
   }
 
   return (
-    <div className='p-4 flex flex-col items-center relative'>
+    <div className='p-2 md:p-4 flex flex-col items-center relative'>
       <div className='flex justify-center'>
         <div
           className='border-gray-600 border-b-2 border-r-2 rounded-ss-2xl'

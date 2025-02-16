@@ -9,8 +9,8 @@ import { Tooltip } from "../ui/tooltip"
 
 export function Header({ player1, player2, setPlayer1, setPlayer2, playPlayer, cleanTable }: headerInterface) {
   return (
-    <div className="my-5">
-      <div className="grid grid-cols-[1fr_0.1fr_1fr] gap-6">
+    <div className="md:my-5 my-3">
+      <div className="grid grid-cols-[1fr_0.1fr_1fr] md:gap-6 gap-3">
         <div className=" flex justify-between items-center">
           <Tooltip text="Restart">
             <button onClick={cleanTable} className="hover:animate-pulse">

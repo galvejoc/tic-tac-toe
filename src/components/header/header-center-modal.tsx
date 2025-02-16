@@ -23,10 +23,10 @@ export function HeaderCenterModal({ isOpen, onClose, children }: HeaderCenterMod
       onClick={handleOverlayClick}>
       <div
         style={{ boxShadow: 'inset -1px -4px 12px rgba(125, 166, 232, 0.5)' }}
-        className="bg-white rounded-lg px-6 pt-6 max-w-sm w-full relative"
+        className="bg-white rounded-lg md:px-6 md:pt-6 px-3 pt-3 max-w-sm w-full relative"
         onClick={handleModalClick}>
         <button
-          className="absolute top-4 right-3 text-gray-500 hover:text-gray-700 text-3xl hover:animate-pulse"
+          className="absolute md:top-4 top-2 right-3 text-gray-500 hover:text-gray-700 text-2xl md:text-3xl hover:animate-pulse"
           onClick={onClose}
         > &times;
         </button>

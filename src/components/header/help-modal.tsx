@@ -34,7 +34,7 @@ export function HelpModal({ isHelpModalOpen, closeHelpModal }: HelpModalInterfac
         <div>
           <div className="flex mb-4 items-center text-blue-800 ">
             <FaQuestion size={24} />
-            <h2 className="text-lg font-semibold ml-4 text-blue-500">Ayuda</h2>
+            <h2 className="md:text-lg text-base font-semibold ml-4 text-blue-500">Ayuda</h2>
           </div>
           <div className="text-blue-600 mb-4 grid gap-3">
             <span>

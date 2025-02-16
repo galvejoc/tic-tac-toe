@@ -31,7 +31,7 @@ export function HeaderForm({ tempPlayer, setTempPlayer }: HeaderFormInterface) {
       />
       <div className="flex items-center justify-between my-5 cursor-pointer" onClick={openIconsModal}>
         <span className="mr-2 text-blue-600 font-medium">Icon</span>
-        <span className="text-2xl" style={{ color: tempPlayer.color }}>{iconsReturn(tempPlayer.icon)}</span>
+        <span className="md:text-2xl text-xl" style={{ color: tempPlayer.color }}>{iconsReturn(tempPlayer.icon)}</span>
         <IconsModal
           tempPlayer={tempPlayer}
           setTempPlayer={setTempPlayer}
