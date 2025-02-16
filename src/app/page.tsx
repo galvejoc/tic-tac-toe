@@ -20,7 +20,7 @@ export default function Home() {
       <Header player1={player1} player2={player2} setPlayer1={setPlayer1} setPlayer2={setPlayer2} playPlayer={playPlayer} cleanTable ={cleanTable}/>
       <Body player1={player1} player2={player2} playPlayer={playPlayer} setPlayPlayer={setPlayPlayer} clean = {clean} setClean={cleanTable}/>
       <footer>
-        {/* <Footer /> */}
+        <Footer />
       </footer>
     </>
   );

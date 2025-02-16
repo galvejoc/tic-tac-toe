@@ -3,7 +3,7 @@ import Link from "next/link";
 export function Footer() {
   return (
     <footer className="left-0 mb-8 right-0 flex w-full justify-center text-xs">
-      <Link href={'/'}>
+      <Link href={'https://github.com/galvejoc/tic-tac-toe'}>
         <span className="mx-2">
           Tic-Tac-Toe
         </span>
