@@ -1,5 +1,6 @@
 import { arrayIcons } from "@/constants";
 import { playerInterface } from "@/interface";
+import { IoMdOptions } from "react-icons/io";
 
 interface IconsModalInterface {
   isIconsModalOpen: boolean
@@ -24,9 +25,12 @@ export function IconsModal({ tempPlayer, setTempPlayer, isIconsModalOpen, closeI
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-10 cursor-default" onClick={handleOverlayClick} >
       <div className="bg-white rounded-lg px-6 pt-6 max-w-sm w-full relative" onClick={handleModalClick}>
-        <h2 className="text-lg font-semibold ml-4">Seleccione un ícono</h2>
+        <div className="flex mb-4 items-center text-blue-800 ">
+          <IoMdOptions size={24} />
+          <h2 className="text-lg font-semibold ml-4 text-blue-500">Seleccione un ícono</h2>
+        </div>
         <button
-          className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 text-3xl"
+          className="absolute top-4 right-3 text-gray-500 hover:text-gray-700 text-3xl hover:animate-pulse"
           onClick={handleOverlayClick}
         > &times;
         </button>

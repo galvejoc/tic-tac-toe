@@ -14,7 +14,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="min-h-screen flex flex-col">
+    <html
+      lang="en"
+      className="min-h-screen flex flex-col bg-slate-50"
+      style={{ boxShadow: 'inset 0px 0px 80px rgba(125, 166, 232, 0.2)' }}>
       <body className="container mx-auto">
         {children}
       </body>

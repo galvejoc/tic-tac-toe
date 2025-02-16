@@ -26,7 +26,7 @@ export function HeaderCenterModal({ isOpen, onClose, children }: HeaderCenterMod
         className="bg-white rounded-lg px-6 pt-6 max-w-sm w-full relative"
         onClick={handleModalClick}>
         <button
-          className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 text-3xl"
+          className="absolute top-4 right-3 text-gray-500 hover:text-gray-700 text-3xl hover:animate-pulse"
           onClick={onClose}
         > &times;
         </button>

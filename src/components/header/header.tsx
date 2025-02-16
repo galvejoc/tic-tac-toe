@@ -1,15 +1,22 @@
+
 import { headerInterface } from "@/interface"
 import HeaderCenter from "./header-center"
 import { Player1 } from "./player-1"
 import { Player2 } from "./player-2"
-import { FaQuestion, FaRedo } from "react-icons/fa"
+import { FaRedo } from "react-icons/fa"
+import { ButtonHelp } from "./button-help"
+import { Tooltip } from "../ui/tooltip"
 
 export function Header({ player1, player2, setPlayer1, setPlayer2, playPlayer, cleanTable }: headerInterface) {
   return (
     <div className="my-5">
       <div className="grid grid-cols-[1fr_0.1fr_1fr] gap-6">
         <div className=" flex justify-between items-center">
-          <button onClick={cleanTable}><FaRedo size={20} style={{color: '#3B82F6'}}/></button>
+          <Tooltip text="Restart">
+            <button onClick={cleanTable} className="hover:animate-pulse">
+              <FaRedo size={24} style={{ color: '#3B82F6' }} />
+            </button>
+          </Tooltip>
           <Player1 {...player1} playPlayer={playPlayer} />
         </div>
         <div className="flex justify-center items-center">
@@ -21,7 +28,9 @@ export function Header({ player1, player2, setPlayer1, setPlayer2, playPlayer, c
         </div>
         <div className=" flex justify-between items-center">
           <Player2 {...player2} playPlayer={playPlayer} />
-          <button><FaQuestion size={20} style={{color: '#3B82F6'}}/></button>
+          <Tooltip text="Help">
+            <ButtonHelp />
+          </Tooltip>
         </div>
       </div>
     </div>

@@ -31,12 +31,12 @@ export default function HeaderCenter({ player1, player2, setPlayer1, setPlayer2 
   return (
     <div>
       <button onClick={openModal}>
-        <IoMdOptions size={28} className="mx-1" style={{ color: '#3B82F6' }} />
+        <IoMdOptions size={28} className="mx-1 hover:animate-pulse" style={{ color: '#3B82F6' }} />
       </button>
       <HeaderCenterModal isOpen={isModalOpen} onClose={closeModal}>
-        <div className="flex mb-4 items-center">
-          <IoMdOptions size={20} />
-          <h2 className="text-lg font-semibold ml-4">Edit perfiles</h2>
+        <div className="flex mb-4 items-center text-blue-800">
+          <IoMdOptions size={24} />
+          <h2 className="text-lg font-semibold ml-4 text-blue-500">Edit perfiles</h2>
         </div>
         <div className="grid grid-cols-[1fr_0.1fr_1fr] gap-3">
           <HeaderForm tempPlayer={tempPlayer1} setTempPlayer={setTempPlayer1} />
@@ -47,7 +47,7 @@ export default function HeaderCenter({ player1, player2, setPlayer1, setPlayer2 
           </div>
           <HeaderForm tempPlayer={tempPlayer2} setTempPlayer={setTempPlayer2} />
         </div>
-        <div className="my-5">
+        <div className="my-5 font-medium">
           <button
             className="border-2 border-blue-500 text-blue-600 hover:bg-blue-100 px-4 py-1 mr-3 rounded-md"
             style={{ boxShadow: 'inset -1px -4px 12px rgba(125, 166, 232, 0.5)' }}

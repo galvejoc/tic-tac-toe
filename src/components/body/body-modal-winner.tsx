@@ -36,12 +36,12 @@ export function BodyModalWinner({ isOpen, setIsOpen, playerWinner, setClean }: B
         > &times;
         </button>
         <div className="flex mb-4 items-center">
-          <IoMdOptions size={20} />
-          <h2 className="text-lg font-semibold ml-4">Game Over</h2>
+          <IoMdOptions size={24} className="text-blue-800 " />
+          <h2 className="text-lg font-semibold ml-4 text-blue-600">Game Over</h2>
         </div>
         {playerWinner === undefined ?
           <div className="flex flex-col items-center">
-            <div className="text-3xl mb-5 font-medium">Empate</div>
+            <div className="text-3xl mb-5 font-medium">Draw</div>
             <div className="text-6xl animate-bounce">
               <FaBalanceScale />
             </div>
